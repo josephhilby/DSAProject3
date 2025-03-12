@@ -18,7 +18,6 @@
   <li><a href="#about-the-project">About The Project</a></li>
   <li><a href="#getting-started">Getting Started</a></li>
   <li><a href="#built-with">Built With</a></li>
-  <li><a href="#acknowledgments">Acknowledgments</a></li>
 </ol>
 
 
