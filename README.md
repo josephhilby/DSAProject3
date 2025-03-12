@@ -3,11 +3,11 @@
 <div align="center">
 
   <a href="https://github.com/<your_repo>">
-    <img src="images/logo.png" alt="Logo" width="100%">
+    <img src="images/logo.png" alt="Logo" width="50%">
   </a>
 
   <h3 align="center">
-    A small application to play Sudoku!
+    A small application to compare maze solving algorithms!
   </h3>
 </div>
 
