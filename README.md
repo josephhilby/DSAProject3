@@ -67,11 +67,6 @@ This project was built with Python 13.12 and PyGame. Other libraries include:
 <img src="images/tech-stack-demo.png" alt="Tech-Stack" width="70%">
 </div >
 
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-TBD
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
