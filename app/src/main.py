@@ -7,11 +7,14 @@ pygame.display.set_caption(CAPTION)
 display: pygame.Surface = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # UI
-ui = UIFacade
+ui = UIFacade(display)
 
+# State
+menu = "MENU"
 
 def main():
     while True:
+        ui.render(menu)
         pygame.display.update()
 
         for event in pygame.event.get():
