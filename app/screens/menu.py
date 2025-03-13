@@ -6,3 +6,5 @@ class MenuScreen:
 
     def render(self, display: pygame.display):
         display.fill(BG_COLOR)
+        self.header_txt = text(MENU_TXT, DEFAULT_FONT, MENU_FONT_SIZE, BLACK, 2, 20)
+        render_text(display, self.header_txt)
