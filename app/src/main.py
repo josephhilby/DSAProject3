@@ -1,26 +1,44 @@
 from app.facades.ui_facade import *
 
-# Display Window
+# Initialize Pygame
 pygame.init()
+
+# Display Window
 pygame.display.set_caption(CAPTION)
-display: pygame.Surface = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+display = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
+# Background
+background = pygame.Surface(display.get_size())
+background.fill(BG_COLOR)
+
+# Component Manager
+manager = pygame_gui.UIManager((SCREEN_WIDTH, SCREEN_HEIGHT))
+clock = pygame.time.Clock()
 
 # UI
-ui = UIFacade(display)
+ui = UIFacade(display, manager)
 
-# State
-menu = "MENU"
+
 
 def main():
     while True:
-        ui.render(menu)
-        pygame.display.update()
+        display.blit(background, (0, 0))
+        ui.render()
+        time_delta = clock.tick(60) / 1000.0
 
         for event in pygame.event.get():
             match event.type:
+                case pygame_gui.UI_BUTTON_PRESSED:
+                    ui.handle(event)
+
                 case pygame.QUIT:
                     ui.quit()
 
+            manager.process_events(event)
+
+        manager.update(time_delta)
+        manager.draw_ui(display)
+        pygame.display.update()
 
 if __name__ == '__main__':
     main()
