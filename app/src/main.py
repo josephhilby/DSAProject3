@@ -1,4 +1,3 @@
-from lib.constraints import *
 from app.facades.ui_facade import *
 
 # Display Window

@@ -1,7 +1,5 @@
 import sys
-import pygame
 
-from lib.constraints import *
 from app.screens.menu import *
 
 class UIFacade:
