@@ -1,4 +1,5 @@
 from app.facades.ui_facade import *
+from lib.constants import *
 
 # Initialize Pygame
 pygame.init()
@@ -23,6 +24,7 @@ ui = UIFacade(display, manager)
 def main():
     while True:
         ui.render()
+        display.blit(background, (0, 0))
         time_delta = clock.tick(60) / 1000.0
 
         for event in pygame.event.get():
