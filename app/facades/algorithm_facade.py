@@ -9,3 +9,12 @@ class AlgorithmFacade:
 
     def names(self):
         return [self.flood_fill.name, self.wall_follow.name]
+
+    def solve(self, nodes, algorithm):
+        match algorithm:
+            case self.flood_fill.name:
+                return self.flood_fill.solve(nodes)
+            case self.wall_follow.name:
+                return self.wall_follow.solve(nodes)
+            case _:
+                raise ValueError(f'Unknown algorithm, {algorithm}')
