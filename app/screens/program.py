@@ -2,6 +2,8 @@ import pygame
 import pygame_gui
 
 from pygame_gui.elements import UIButton
+
+from app.facades.algorithm_facade import AlgorithmFacade
 from lib.constants import *
 
 
@@ -11,6 +13,9 @@ class ProgramScreen:
         self.run_button: UIButton | None = None
         self.reset_button: UIButton | None = None
         self.exit_button: UIButton | None = None
+        self.alg_facade: AlgorithmFacade | None = None
+        self.alg_one: str | None = None
+        self.alg_two: str | None = None
 
     def render(self):
         if self.run_button is None:

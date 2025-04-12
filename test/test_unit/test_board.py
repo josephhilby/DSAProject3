@@ -1,14 +1,11 @@
 import unittest
 
-from app.objects.board import Board
+from app.objects.maze import Maze
 
 
 class TestBoard(unittest.TestCase):
     def setUp(self):
-        self.board = Board()
+        self.board = Maze()
 
     def test_init(self):
-        self.assertIsInstance(self.board, Board)
-
-    def test_attr(self):
-        self.assertEqual(self.board.row, [1, 2, 3])
+        self.assertIsInstance(self.board, Maze)
