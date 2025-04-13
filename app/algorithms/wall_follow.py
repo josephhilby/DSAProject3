@@ -1,6 +1,13 @@
 class WallFollow:
+    """
+    Class to hold logic for wall follow algorithm
+
+    Name used for game logic
+    Solve should take in a doubly linked graph and
+    return array of node id's for solution
+    """
     def __init__(self):
         self.name = "Wall Follow"
 
     def solve(self, nodes):
-        return [nodes[0], nodes[1], nodes[2], nodes[6], nodes[7], nodes[11], nodes[15]]
+        return [1, 321, 322]
