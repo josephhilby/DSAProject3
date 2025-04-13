@@ -27,6 +27,12 @@ class UIFacade:
         elif self.state == 'PROGRAM':
             self.state = self.program_screen.handle(event)
 
+    def select(self, event: pygame.event.Event):
+        if event.ui_element == self.menu_screen.alg_one_dropdown:
+            self.program_screen.alg_one = event.text
+        elif event.ui_element == self.menu_screen.alg_two_dropdown:
+            self.program_screen.alg_two = event.text
+
     @staticmethod
     def quit():
         pygame.quit()
