@@ -13,11 +13,17 @@ class ProgramScreen:
         self.run_button: UIButton | None = None
         self.reset_button: UIButton | None = None
         self.exit_button: UIButton | None = None
-        self.alg_facade: AlgorithmFacade | None = None
+        self.alg_facade: AlgorithmFacade = AlgorithmFacade()
         self.alg_one: str | None = None
         self.alg_two: str | None = None
 
     def render(self):
+        if self.alg_one is None:
+            self.alg_one = self.alg_facade.names()[0]
+
+        if self.alg_two is None:
+            self.alg_two = self.alg_facade.names()[0]
+
         if self.run_button is None:
             self.run_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((SCREEN_WIDTH * 0.59, SCREEN_HEIGHT * 0.86), (100, 50)),
                                                          text='Run',
@@ -50,3 +56,5 @@ class ProgramScreen:
         self.run_button = None
         self.reset_button = None
         self.exit_button = None
+        self.alg_one = None
+        self.alg_two = None

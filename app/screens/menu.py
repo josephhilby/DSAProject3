@@ -27,13 +27,13 @@ class MenuScreen:
                                                             manager=self.manager)
 
         if self.alg_one_dropdown is None:
-            self.alg_one_dropdown = pygame_gui.elements.UIDropDownMenu(relative_rect=pygame.Rect(SCREEN_WIDTH * 0.55, SCREEN_HEIGHT * 0.5, 110, 25),
+            self.alg_one_dropdown = pygame_gui.elements.UIDropDownMenu(relative_rect=pygame.Rect(SCREEN_WIDTH * 0.35, SCREEN_HEIGHT * 0.5, 110, 25),
                                                                        options_list=self.alg_names(),
                                                                        starting_option=self.alg_names()[0],
                                                                        manager=self.manager)
 
         if self.alg_two_dropdown is None:
-            self.alg_two_dropdown = pygame_gui.elements.UIDropDownMenu(relative_rect=pygame.Rect(SCREEN_WIDTH * 0.35, SCREEN_HEIGHT * 0.5, 110, 25),
+            self.alg_two_dropdown = pygame_gui.elements.UIDropDownMenu(relative_rect=pygame.Rect(SCREEN_WIDTH * 0.55, SCREEN_HEIGHT * 0.5, 110, 25),
                                                                        options_list=self.alg_names(),
                                                                        starting_option=self.alg_names()[0],
                                                                        manager=self.manager)

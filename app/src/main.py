@@ -32,6 +32,9 @@ def main():
                 case pygame_gui.UI_BUTTON_PRESSED:
                     ui.handle(event)
 
+                case pygame_gui.UI_DROP_DOWN_MENU_CHANGED:
+                    ui.select(event)
+
                 case pygame.QUIT:
                     ui.quit()
 
