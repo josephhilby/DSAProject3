@@ -3,45 +3,30 @@ from app.objects.node import Node
 
 class Maze:
     """
-    Class representing a maze.
+    Class representing a maze
+
+    An array of nodes, position in array will dictate placement in maze
+        row = node.id / 320
+        col = node.id % 320
+
+    Hardcoded a line size of 320, total size 320x320
+    Walls (edges) are held as a dict of bools in Node objects
     """
     def __init__(self):
-        self.start = None
-        self.end = None
-        self.board = [Node]
+        self.lineSize: int = 320
+        self.start: int = 0
+        self.end: int = (320*320) - 1
+        self.nodes: [] = []
 
     def generate_maze(self):
-        # this is a 4x4 maze that is a stub for generate_maze
-        self.start = 1
-        self.end = 15
+        for num in range(self.start + 1, self.end + 2):
+            self.nodes.append(Node(num))
 
-        for num in range(0, 16):
-            self.board.append(Node(num))
+        self.nodes[self.start].walls["left"] = False
+        self.nodes[self.end].walls["right"] = False
 
-        self.board[0].add_right(self.board[1])
-
-        self.board[1].add_right(self.board[2])
-
-        self.board[2].add_right(self.board[3])
-        self.board[2].add_down(self.board[6])
-
-        self.board[4].add_down(self.board[8])
-
-        self.board[5].add_down(self.board[9])
-
-        self.board[6].add_down(self.board[10])
-        self.board[6].add_right(self.board[7])
-
-        self.board[7].add_down(self.board[11])
-
-        self.board[8].add_down(self.board[12])
-
-        self.board[9].add_down(self.board[13])
-
-        self.board[10].add_down(self.board[14])
-
-        self.board[11].add_down(self.board[15])
-
-        self.board[12].add_right(self.board[13])
-
-        self.board[13].add_right(self.board[14])
+        # create program that selects two random nodes in 'nodes'
+        # then checks to see if they are in the same disjointed-set (union-find)
+        # connects (smaller to larger) them only if they were in diff sets
+        # removes wall based on location (e.g. 1 <- 2, 1 remove right wall, 2 remove left wall;
+        # 1 <- 321, 1 remove bottom wall, 321 remove top wall)

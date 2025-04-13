@@ -1,23 +1,17 @@
 class Node:
+    """
+    Class representing a cell, to be put in a maze
+
+    Doubly Linked List Node, ID will dictate placement in maze
+        row = self.id / 320
+        col = self.id % 320
+
+    Walls (edges) are held as a dict of bools
+    If visited in a given solution mark visited to True
+    """
     def __init__(self, id: int):
-        self.id = id
-        self.up = None
-        self.down = None
-        self.left = None
-        self.right = None
-
-    def add_right(self, node):
-        self.right = node
-        node.left = self
-
-    def add_left(self, node):
-        self.left = node
-        node.right = self
-
-    def add_up(self, node):
-        self.up = node
-        node.down = self
-
-    def add_down(self, node):
-        self.down = node
-        node.left = self
+        self.id: int = id
+        self.next: Node | None = None
+        self.prev: Node | None = None
+        self.visited: bool = False
+        self.walls: dict[str, bool] = {"top": True, "bottom": True, "left": True, "right": True}
