@@ -6,15 +6,15 @@ pygame.init()
 
 # Display Window
 pygame.display.set_caption(CAPTION)
-display = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+display: pygame.Surface = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Background
 background = pygame.Surface(display.get_size())
-background.fill(BG_COLOR)
+background.fill(WHITE)
 display.blit(background, (0, 0))
 
 # Component Manager
-manager = pygame_gui.UIManager((SCREEN_WIDTH, SCREEN_HEIGHT))
+manager = pygame_gui.UIManager((SCREEN_WIDTH, SCREEN_HEIGHT), THEME_PATH)
 clock = pygame.time.Clock()
 
 # UI
@@ -23,7 +23,6 @@ ui = UIFacade(display, manager)
 
 def main():
     while True:
-        ui.render()
         display.blit(background, (0, 0))
         time_delta = clock.tick(60) / 1000.0
 
@@ -42,6 +41,7 @@ def main():
 
         manager.update(time_delta)
         manager.draw_ui(display)
+        ui.render(display)
         pygame.display.update()
 
 
