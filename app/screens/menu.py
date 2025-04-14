@@ -21,12 +21,12 @@ class MenuScreen:
 
     def render(self):
         if self.header_section is None:
-            self.header_section = pygame_gui.elements.UILabel(relative_rect=pygame.Rect((SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.0), (SCREEN_WIDTH * 1.0, SCREEN_HEIGHT * 0.065)),
+            self.header_section = pygame_gui.elements.UILabel(relative_rect=pygame.Rect((SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.0), (SCREEN_WIDTH * 1.0, SCREEN_HEIGHT * 0.05)),
                                                               text=MENU_TXT,
                                                               manager=self.manager)
 
         if self.dropdown_section is None:
-            self.dropdown_section = pygame_gui.elements.UIPanel(relative_rect=pygame.Rect((SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.065), (SCREEN_WIDTH * 1.0, SCREEN_HEIGHT * 0.83)),
+            self.dropdown_section = pygame_gui.elements.UIPanel(relative_rect=pygame.Rect((SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.05), (SCREEN_WIDTH * 1.0, SCREEN_HEIGHT * 0.83)),
                                                                 manager=self.manager)
 
             self.alg_one_dropdown = pygame_gui.elements.UIDropDownMenu(relative_rect=pygame.Rect(SCREEN_WIDTH * 0.35, SCREEN_HEIGHT * 0.42, 110, 25),
