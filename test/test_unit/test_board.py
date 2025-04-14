@@ -1,14 +1,11 @@
 import unittest
 
-from app.objects.board import Board
+from app.objects.graph import Graph
 
 
 class TestBoard(unittest.TestCase):
     def setUp(self):
-        self.board = Board()
+        self.board = Graph()
 
     def test_init(self):
-        self.assertIsInstance(self.board, Board)
-
-    def test_attr(self):
-        self.assertEqual(self.board.row, [1, 2, 3])
+        self.assertIsInstance(self.board, Graph)
