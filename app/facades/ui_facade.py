@@ -15,11 +15,11 @@ class UIFacade:
         self.menu_screen: MenuScreen = MenuScreen(self.manager)
         self.program_screen: ProgramScreen = ProgramScreen(self.manager)
 
-    def render(self):
+    def render(self, display: pygame.Surface):
         if self.state == 'MENU':
             self.menu_screen.render()
         elif self.state == 'PROGRAM':
-            self.program_screen.render()
+            self.program_screen.render(display)
 
     def handle(self, event: pygame.event.Event):
         if self.state == 'MENU':
