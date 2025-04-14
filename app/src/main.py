@@ -41,7 +41,7 @@ def main():
 
         manager.update(time_delta)
         manager.draw_ui(display)
-        ui.render(display)
+        ui.render()
         pygame.display.update()
 
 
