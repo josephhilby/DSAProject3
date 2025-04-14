@@ -1,3 +1,6 @@
+from app.objects.node import Node
+
+
 class WallFollow:
     """
     Class to hold logic for wall follow algorithm
@@ -9,5 +12,5 @@ class WallFollow:
     def __init__(self):
         self.name = "Wall Follow"
 
-    def solve(self, nodes):
+    def solve(self, nodes: [Node]):
         return [1, 321, 322]

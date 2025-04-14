@@ -1,5 +1,6 @@
 from app.objects.node import Node
 
+
 class FloodFill:
     """
     Class to hold logic for flood fill algorithm
@@ -11,5 +12,5 @@ class FloodFill:
     def __init__(self):
         self.name = "Flood Fill"
 
-    def solve(self, nodes):
+    def solve(self, nodes: [Node]):
         return [1, 2, 3, 4]
