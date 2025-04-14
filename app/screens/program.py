@@ -18,16 +18,16 @@ class ProgramScreen:
         self.reset_button: UIButton | None = None
         self.exit_button: UIButton | None = None
         self.alg_facade: AlgorithmFacade = AlgorithmFacade()
-        self.graphs: [Graph] = []
-        # self.solutions: [Solution]
+        self.solutions: [{str: (int, int)}] = []
+        self.maze_rect: pygame.Rect | None = None
         self.alg_one: str | None = None
         self.alg_two: str | None = None
         self.section_one: UIPanel | None = None
         self.section_two: UIPanel | None = None
 
-    def render(self):
+    def render(self, display: pygame.Surface):
         if self.header_section is None:
-            self.header_section = pygame_gui.elements.UILabel(relative_rect=pygame.Rect((SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.0), (SCREEN_WIDTH * 1.0, SCREEN_HEIGHT * 0.065)),
+            self.header_section = pygame_gui.elements.UILabel(relative_rect=pygame.Rect((SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.0), (SCREEN_WIDTH * 1.0, SCREEN_HEIGHT * 0.05)),
                                                               text=PROGRAM_TXT,
                                                               manager=self.manager)
 
@@ -51,28 +51,45 @@ class ProgramScreen:
                                                             text='Exit',
                                                             manager=self.manager)
         if self.section_one is None:
-            self.section_one = pygame_gui.elements.UIPanel(relative_rect=pygame.Rect((SCREEN_WIDTH * 0.02, SCREEN_HEIGHT * 0.08), (SCREEN_WIDTH * 0.25, SCREEN_HEIGHT * 0.8)),
+            self.section_one = pygame_gui.elements.UIPanel(relative_rect=pygame.Rect((SCREEN_WIDTH * 0.02, SCREEN_HEIGHT * 0.05), (SCREEN_WIDTH * 0.40, SCREEN_HEIGHT * 0.845)),
                                                            manager=self.manager)
 
-            pygame_gui.elements.UILabel(relative_rect=pygame.Rect((0, 0), (SCREEN_WIDTH * 0.25, 25)),
+            pygame_gui.elements.UILabel(relative_rect=pygame.Rect((0, 0), (SCREEN_WIDTH * 0.40, 25)),
                                         text="Runs",
                                         manager=self.manager,
                                         container=self.section_one)
 
         if self.section_two is None:
-            self.section_two = pygame_gui.elements.UIPanel(relative_rect=pygame.Rect((SCREEN_WIDTH * 0.28, SCREEN_HEIGHT * 0.08), (SCREEN_WIDTH * 0.70, SCREEN_HEIGHT * 0.8)),
+            self.section_two = pygame_gui.elements.UIPanel(relative_rect=pygame.Rect((SCREEN_WIDTH * 0.435, SCREEN_HEIGHT * 0.05), (SCREEN_WIDTH * 0.545, SCREEN_HEIGHT * 0.845)),
                                                            manager=self.manager)
 
-            pygame_gui.elements.UILabel(relative_rect=pygame.Rect((0, 0), (SCREEN_WIDTH * 0.70, 25)),
+            pygame_gui.elements.UILabel(relative_rect=pygame.Rect((0, 0), (SCREEN_WIDTH * 0.545, 25)),
                                         text="Maze",
                                         manager=self.manager,
                                         container=self.section_two)
 
+        if self.maze_rect is None:
+            self.maze_rect = pygame.Rect((SCREEN_WIDTH * 0.435 + 7, SCREEN_HEIGHT * 0.05 + 30), (641, 641))
+
+        pygame.draw.rect(display, WHITE, self.maze_rect)
+        pygame.draw.rect(display, BLACK, self.maze_rect, width=1)
+        if self.solutions:
+            pygame.draw.lines(display, (0, 255, 0), False, self.solutions[0][self.alg_one], 2)
+            pygame.draw.lines(display, (0, 0, 255), False, self.solutions[0][self.alg_two], 2)
+
+
     def handle(self, event: pygame.event.Event):
         if event.ui_element == self.run_button:
-            print(f"run: {self.alg_one}, {self.alg_two}")
+            graph = Graph()
+            graph.generate_maze()
+            nodes = graph.nodes
+            top = self.maze_rect.top
+            left = self.maze_rect.left
+            solution = {self.alg_one: self.alg_facade.plot(nodes, self.alg_one, 640, top, left),
+                        self.alg_two: self.alg_facade.plot(nodes, self.alg_two, 640, top, left)}
+            self.solutions.append(solution)
         elif event.ui_element == self.reset_button:
-            print("reset")
+            self.solutions = []
         elif event.ui_element == self.exit_button:
             self.clear()
             return "MENU"
@@ -94,3 +111,5 @@ class ProgramScreen:
         self.section_two = None
         self.alg_one = None
         self.alg_two = None
+        self.maze_rect = None
+        self.solutions = []
