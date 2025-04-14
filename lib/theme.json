@@ -1,0 +1,37 @@
+ {
+     "label":
+     {
+         "colours":
+         {
+             "dark_bg": "#ffffff",
+             "normal_text": "#000000"
+         },
+         "font":
+         {
+             "size": "12",
+             "bold": "1",
+             "italic": "0"
+         }
+     },
+     "button":
+     {
+         "colours":
+         {
+             "normal_border": "White",
+             "normal_bg": "SlateGray",
+             "normal_text": "White"
+         },
+         "misc":
+         {
+             "shape": "rounded_rectangle",
+             "shape_corner_radius": "10",
+             "border_width": "2"
+         }
+     },
+     "panel": {
+       "colours": {
+         "dark_bg": "#D3D3D3",
+         "normal_border": "#000000"
+       }
+     }
+ }
