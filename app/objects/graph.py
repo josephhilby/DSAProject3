@@ -1,9 +1,9 @@
 from app.objects.node import Node
 
 
-class Maze:
+class Graph:
     """
-    Class representing a maze
+    Class representing a graph, will be used to render a maze
 
     An array of nodes, position in array will dictate placement in maze
         row = node.id / 320
