@@ -1,6 +1,6 @@
 class Node:
     """
-    Class representing a cell, to be put in a maze
+    Class representing a cell, to be put in a graph
 
     Doubly Linked List Node, ID will dictate placement in maze
         row = self.id / 320
