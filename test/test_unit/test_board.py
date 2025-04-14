@@ -1,11 +1,11 @@
 import unittest
 
-from app.objects.maze import Maze
+from app.objects.graph import Graph
 
 
 class TestBoard(unittest.TestCase):
     def setUp(self):
-        self.board = Maze()
+        self.board = Graph()
 
     def test_init(self):
-        self.assertIsInstance(self.board, Maze)
+        self.assertIsInstance(self.board, Graph)
