@@ -25,7 +25,7 @@ class ProgramScreen:
         self.section_one: UIPanel | None = None
         self.section_two: UIPanel | None = None
 
-    def render(self, display: pygame.Surface):
+    def render(self):
         if self.header_section is None:
             self.header_section = pygame_gui.elements.UILabel(relative_rect=pygame.Rect((SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.0), (SCREEN_WIDTH * 1.0, SCREEN_HEIGHT * 0.065)),
                                                               text=PROGRAM_TXT,
@@ -67,9 +67,6 @@ class ProgramScreen:
                                         text="Maze",
                                         manager=self.manager,
                                         container=self.section_two)
-
-        maze_rect = pygame.Rect(SCREEN_WIDTH * 0.30, SCREEN_HEIGHT * 0.12, 800, 500)
-        pygame.draw.rect(display, pygame.Color("#FFFFFF"), maze_rect)
 
     def handle(self, event: pygame.event.Event):
         if event.ui_element == self.run_button:
