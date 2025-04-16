@@ -1,32 +1,25 @@
 from app.objects.node import Node
 
-
 class Graph:
-    """
-    Class representing a graph, will be used to render a maze
-
-    An array of nodes, position in array will dictate placement in maze
-        row = node.id / 320
-        col = node.id % 320
-
-    Hardcoded a line size of 320, total size 320x320
-    Walls (edges) are held as a dict of bools in Node objects
-    """
     def __init__(self):
-        self.lineSize: int = 320
+        self.lineSize: int = 5  
         self.start: int = 0
-        self.end: int = (320*320) - 1
-        self.nodes: [] = []
+        self.end: int = (5 * 5) - 1  
+        self.nodes: list[Node] = []
 
     def generate_maze(self):
-        for num in range(self.start + 1, self.end + 2):
-            self.nodes.append(Node(num))
-
+        for i in range(1, 26):  
+            node = Node(i)
+            self.nodes.append(node)
+        
+        self.nodes[0].walls["right"] = False  
+        self.nodes[1].walls["right"] = False  
+        self.nodes[2].walls["right"] = False  
+        self.nodes[3].walls["right"] = False  
+        self.nodes[4].walls["bottom"] = False 
+        self.nodes[9].walls["bottom"] = False 
+        self.nodes[14].walls["bottom"] = False 
+        self.nodes[19].walls["bottom"] = False 
+       
         self.nodes[self.start].walls["left"] = False
         self.nodes[self.end].walls["right"] = False
-
-        # create program that selects two random nodes in 'nodes'
-        # then checks to see if they are in the same disjointed-set (union-find)
-        # connects (smaller to larger) them only if they were in diff sets
-        # removes wall based on location (e.g. 1 <- 2, 1 remove right wall, 2 remove left wall;
-        # 1 <- 321, 1 remove bottom wall, 321 remove top wall)
