@@ -13,7 +13,7 @@ class WallFollow:
         self.name = "Wall Follow"
 
     def solve(self, nodes: list[Node]):
-        self.dim = 5
+        self.dim = 320
         start = 0
         end = (self.dim * self.dim) - 1
         #clockwise movement directions and their offsets
@@ -59,4 +59,4 @@ class WallFollow:
                         break
             if not moved:
                 break
-        return list(range(1, 321)) + list(range(320, 102401, 320))
+        return path

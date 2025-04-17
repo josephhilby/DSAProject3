@@ -22,8 +22,8 @@ class AlgorithmFacade:
         cell_size = line_size // 320
         path = []
         for node_id in solution:
-            row = (node_id - 1) // 320
-            col = (node_id - 1) % 320
+            row = (node_id) // 320
+            col = (node_id) % 320
             x = left + col * cell_size + cell_size // 2
             y = top + row * cell_size + cell_size // 2
             path.append((x, y))
