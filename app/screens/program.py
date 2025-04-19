@@ -97,7 +97,7 @@ class ProgramScreen:
         pygame.draw.rect(display, BLACK, self.maze_rect, width=1)
         if len(self.solutions) > 0:
             pygame.draw.lines(display, (0, 255, 0), False, self.solutions[self.selected_solution-1][self.alg_one], 2)
-            pygame.draw.lines(display, (0, 0, 255), False, self.solutions[self.selected_solution-1][self.alg_two], 2)
+            pygame.draw.lines(display, (0, 0, 255), False, self.solutions[self.selected_solution-1][self.alg_two], 1)
 
     def rerender_maze(self):
         self.section_two.kill()
@@ -123,6 +123,8 @@ class ProgramScreen:
             self.solutions = []
             self.section_one.kill()
             self.section_one = None
+            self.rerender_maze()
+            self.rerender_results()
         elif event.ui_element == self.exit_button:
             self.clear()
             return "MENU"
