@@ -12,7 +12,7 @@ WHITE = (255, 255, 255)
 DEFAULT_FONT = 'Times New Roman'
 THEME_PATH = "../../lib/theme.json"
 
-MENU_TXT = "Select your two algorithms to compare and click 'Start' below to begin. Click 'Exit' to close the program."
+MENU_TXT = "Select your two algorithms to compare and click 'Start' below to begin. Click 'Quit' to close the program."
 PROGRAM_TXT = "Click 'Run' to start a simulation run, 'Reset' to delete all previous runs, or 'Exit' to return to the menu screen"
 
 BUTTON_FONT_SIZE = (20 * SCALER)
