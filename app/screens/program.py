@@ -19,6 +19,7 @@ class ProgramScreen:
         self.exit_button: UIButton | None = None
         self.alg_facade: AlgorithmFacade = AlgorithmFacade()
         self.solutions: [{str: (int, int)}] = []
+        self.selected_solution: int | None = None
         self.maze_rect: pygame.Rect | None = None
         self.alg_one: str | None = None
         self.alg_two: str | None = None
@@ -59,6 +60,11 @@ class ProgramScreen:
                                         manager=self.manager,
                                         container=self.section_one)
 
+            pygame_gui.elements.UISelectionList(relative_rect=pygame.Rect((0, 25), ((SCREEN_WIDTH * 0.40) -5, (SCREEN_HEIGHT * 0.845)-30)),
+                                                item_list=[f"Run {i}" for i in range(1, len(self.solutions) + 1)],
+                                                manager=self.manager,
+                                                container=self.section_one)
+
         if self.section_two is None:
             self.section_two = pygame_gui.elements.UIPanel(relative_rect=pygame.Rect((SCREEN_WIDTH * 0.435, SCREEN_HEIGHT * 0.05), (SCREEN_WIDTH * 0.545, SCREEN_HEIGHT * 0.845)),
                                                            manager=self.manager)
@@ -88,8 +94,12 @@ class ProgramScreen:
             solution = {self.alg_one: self.alg_facade.plot(nodes, self.alg_one, 640, top, left),
                         self.alg_two: self.alg_facade.plot(nodes, self.alg_two, 640, top, left)}
             self.solutions.append(solution)
+            self.section_one.kill()
+            self.section_one = None
         elif event.ui_element == self.reset_button:
             self.solutions = []
+            self.section_one.kill()
+            self.section_one = None
         elif event.ui_element == self.exit_button:
             self.clear()
             return "MENU"
