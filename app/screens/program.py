@@ -83,6 +83,7 @@ class ProgramScreen:
             <b> Run {self.selected_solution}
             <b> {self.alg_one}: Steps {len(self.solutions[self.selected_solution-1][self.alg_one])} </b>
             <b> {self.alg_two}: Steps {len(self.solutions[self.selected_solution-1][self.alg_two])} </b>
+            <p> {self.alg_one} is {len(self.solutions[self.selected_solution-1][self.alg_one])/len(self.solutions[self.selected_solution-1][self.alg_two]):.2f} the speed of {self.alg_two}</p>
             """
 
             pygame_gui.elements.UITextBox(relative_rect=pygame.Rect((0, 0), (SCREEN_WIDTH * 0.40 - 6, SCREEN_HEIGHT * 0.23 - 6)),
@@ -100,12 +101,14 @@ class ProgramScreen:
             pygame.draw.lines(display, (0, 0, 255), False, self.solutions[self.selected_solution-1][self.alg_two], 1)
 
     def rerender_maze(self):
-        self.section_two.kill()
-        self.section_two = None
+        if self.section_two is not None:
+            self.section_two.kill()
+            self.section_two = None
 
     def rerender_results(self):
-        self.section_three.kill()
-        self.section_three = None
+        if self.section_three is not None:
+            self.section_three.kill()
+            self.section_three = None
 
     def handle(self, event: pygame.event.Event):
         if event.ui_element == self.run_button:
@@ -137,8 +140,10 @@ class ProgramScreen:
         self.reset_button.kill()
         self.exit_button.kill()
         self.section_one.kill()
-        self.section_two.kill()
-        self.section_three.kill()
+        if self.section_two is not None:
+            self.section_two.kill()
+        if self.section_three is not None:
+            self.section_three.kill()
         self.header_section = None
         self.run_button = None
         self.reset_button = None
