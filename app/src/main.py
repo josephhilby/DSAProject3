@@ -1,3 +1,5 @@
+import pygame_gui
+
 from app.facades.ui_facade import *
 from lib.constants import *
 
@@ -32,7 +34,13 @@ def main():
                     ui.handle(event)
 
                 case pygame_gui.UI_DROP_DOWN_MENU_CHANGED:
-                    ui.select(event)
+                    ui.select_alg(event)
+
+                case pygame_gui.UI_SELECTION_LIST_NEW_SELECTION:
+                    if event.ui_object_id == 'panel.drop_down_menu.#drop_down_options_list':
+                        ui.select_alg(event)
+                    else:
+                        ui.select_run(event)
 
                 case pygame.QUIT:
                     ui.quit()
