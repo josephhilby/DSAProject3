@@ -37,10 +37,7 @@ def main():
                     ui.select_alg(event)
 
                 case pygame_gui.UI_SELECTION_LIST_NEW_SELECTION:
-                    if event.ui_object_id == 'panel.drop_down_menu.#drop_down_options_list':
-                        ui.select_alg(event)
-                    else:
-                        ui.select_run(event)
+                    ui.select_run(event)
 
                 case pygame.QUIT:
                     ui.quit()

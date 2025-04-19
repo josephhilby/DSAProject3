@@ -35,6 +35,8 @@ class UIFacade:
             self.program_screen.alg_two = event.text
 
     def select_run(self, event: pygame.event.Event):
+        if event.ui_object_id == 'panel.drop_down_menu.#drop_down_options_list':
+            return
         run = re.search(r'Run (\d+)', event.text)
         if (run):
             self.program_screen.selected_solution = int(run.group(1))

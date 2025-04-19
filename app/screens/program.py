@@ -62,7 +62,7 @@ class ProgramScreen:
                                         container=self.section_one)
 
             pygame_gui.elements.UISelectionList(relative_rect=pygame.Rect((0, 25), ((SCREEN_WIDTH * 0.40) - 6, SCREEN_HEIGHT * 0.7 - 31)),
-                                                item_list=[f"Run {i}: more here" for i in range(1, len(self.solutions) + 1)],
+                                                item_list=[f"Run {i}" for i in range(1, len(self.solutions) + 1)],
                                                 manager=self.manager,
                                                 container=self.section_one)
 
@@ -75,17 +75,17 @@ class ProgramScreen:
                                         manager=self.manager,
                                         container=self.section_two)
 
-        if self.section_three is None:
+        if self.section_three is None and len(self.solutions) > 0:
             self.section_three = pygame_gui.elements.UIPanel(relative_rect=pygame.Rect((SCREEN_WIDTH * 0.02, SCREEN_HEIGHT * 0.75), (SCREEN_WIDTH * 0.40, SCREEN_HEIGHT * 0.23)),
                                                              manager=self.manager)
 
             text = f"""
             <b> Run {self.selected_solution}
-            <b> Alg 1: {self.alg_one} </b>
-            <b> Alg 2: {self.alg_two} </b>
+            <b> {self.alg_one}: Steps {len(self.solutions[self.selected_solution-1][self.alg_one])} </b>
+            <b> {self.alg_two}: Steps {len(self.solutions[self.selected_solution-1][self.alg_two])} </b>
             """
 
-            results = pygame_gui.elements.UITextBox(relative_rect=pygame.Rect((0, 0), (SCREEN_WIDTH * 0.40 - 6, SCREEN_HEIGHT * 0.23 - 6)),
+            pygame_gui.elements.UITextBox(relative_rect=pygame.Rect((0, 0), (SCREEN_WIDTH * 0.40 - 6, SCREEN_HEIGHT * 0.23 - 6)),
                                           html_text=text,
                                           manager=self.manager,
                                           container=self.section_three)
