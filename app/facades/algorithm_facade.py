@@ -4,6 +4,9 @@ from app.algorithms.wall_follow import WallFollow
 
 
 class AlgorithmFacade:
+    """
+    Class to manage requests to solve and plot maze solutions
+    """
     def __init__(self):
         self.flood_fill: FloodFill = FloodFill()
         self.wall_follow: WallFollow = WallFollow()

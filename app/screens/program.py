@@ -11,6 +11,9 @@ from lib.constants import *
 
 
 class ProgramScreen:
+    """
+    Class to hold components and manage state of program screen
+    """
     def __init__(self, manager: pygame_gui.UIManager):
         self.manager: pygame_gui.UIManager = manager
         self.header_section: UILabel | None = None

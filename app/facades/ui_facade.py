@@ -9,6 +9,9 @@ from app.screens.program import ProgramScreen
 
 
 class UIFacade:
+    """
+    Class to manage state of the app for the main function
+    """
     def __init__(self, display: pygame.display, manager: UIManager):
         self.state: str = "MENU"
         self.display: pygame.display = display
