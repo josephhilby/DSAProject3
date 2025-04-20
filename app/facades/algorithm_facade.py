@@ -1,3 +1,4 @@
+from app.objects.node import Node
 from app.algorithms.flood_fill import FloodFill
 from app.algorithms.wall_follow import WallFollow
 
@@ -10,14 +11,14 @@ class AlgorithmFacade:
     def names(self):
         return [self.flood_fill.name, self.wall_follow.name]
 
-    def solve(self, nodes, algorithm):
+    def solve(self, nodes: list[Node], algorithm: str):
         match algorithm:
             case self.flood_fill.name:
                 return self.flood_fill.solve(nodes)
             case self.wall_follow.name:
                 return self.wall_follow.solve(nodes)
 
-    def plot(self, nodes, algorithm, line_size, top, left):
+    def plot(self, nodes: list[Node], algorithm: str, line_size: int, top: int, left: int):
         solution = self.solve(nodes, algorithm)
         cell_size = line_size // 320
         path = []

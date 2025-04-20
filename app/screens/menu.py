@@ -51,7 +51,6 @@ class MenuScreen:
                                                             text='Quit',
                                                             manager=self.manager)
 
-
     def handle(self, event: pygame.event.Event):
         if event.ui_element == self.start_button:
             self.clear()
