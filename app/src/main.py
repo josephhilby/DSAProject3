@@ -8,7 +8,7 @@ pygame.init()
 
 # Display Window
 pygame.display.set_caption(CAPTION)
-display: pygame.Surface = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+display = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Background
 background = pygame.Surface(display.get_size())
