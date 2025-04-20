@@ -4,8 +4,8 @@ from app.algorithms.wall_follow import WallFollow
 
 class AlgorithmFacade:
     def __init__(self):
-        self.flood_fill = FloodFill()
-        self.wall_follow = WallFollow()
+        self.flood_fill: FloodFill = FloodFill()
+        self.wall_follow: WallFollow = WallFollow()
 
     def names(self):
         return [self.flood_fill.name, self.wall_follow.name]
@@ -22,8 +22,8 @@ class AlgorithmFacade:
         cell_size = line_size // 320
         path = []
         for node_id in solution:
-            row = (node_id) // 320
-            col = (node_id) % 320
+            row = node_id // 320
+            col = node_id % 320
             x = left + col * cell_size + cell_size // 2
             y = top + row * cell_size + cell_size // 2
             path.append((x, y))
