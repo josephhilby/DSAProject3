@@ -10,7 +10,7 @@ class FloodFill:
     return array of node id's for solution
     """
     def __init__(self):
-        self.name = "Flood Fill"
+        self.name: str = "Flood Fill"
 
     def solve(self, nodes: list[Node]):
         self.dim=320
