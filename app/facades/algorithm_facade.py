@@ -18,14 +18,15 @@ class AlgorithmFacade:
                 return self.wall_follow.solve(nodes)
 
     def plot(self, nodes, algorithm, line_size, top, left):
-        solution = self.solve(nodes, algorithm)
+        result = self.solve(nodes, algorithm)
+        coords, visited_count = result
         cell_size = line_size // 320
         path = []
-        for node_id in solution:
+        for node_id in coords:
             row = (node_id) // 320
             col = (node_id) % 320
             x = left + col * cell_size + cell_size // 2
             y = top + row * cell_size + cell_size // 2
             path.append((x, y))
-        return path
+        return path, visited_count
 

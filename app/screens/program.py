@@ -78,12 +78,16 @@ class ProgramScreen:
         if self.section_three is None and len(self.solutions) > 0:
             self.section_three = pygame_gui.elements.UIPanel(relative_rect=pygame.Rect((SCREEN_WIDTH * 0.02, SCREEN_HEIGHT * 0.75), (SCREEN_WIDTH * 0.40, SCREEN_HEIGHT * 0.23)),
                                                              manager=self.manager)
+            alg_one_data = self.solutions[self.selected_solution - 1][self.alg_one]
+            alg_two_data = self.solutions[self.selected_solution - 1][self.alg_two]
+            alg_one_path, alg_one_visited = alg_one_data
+            alg_two_path, alg_two_visited = alg_two_data
 
             text = f"""
-            <b> Run {self.selected_solution}
-            <b> {self.alg_one}: Steps {len(self.solutions[self.selected_solution-1][self.alg_one])} </b>
-            <b> {self.alg_two}: Steps {len(self.solutions[self.selected_solution-1][self.alg_two])} </b>
-            """
+                        <b> Run {self.selected_solution}
+                        <b> {self.alg_one}: Steps {alg_one_visited} </b>
+                        <b> {self.alg_two}: Steps {alg_two_visited}</b>
+                        """
 
             pygame_gui.elements.UITextBox(relative_rect=pygame.Rect((0, 0), (SCREEN_WIDTH * 0.40 - 6, SCREEN_HEIGHT * 0.23 - 6)),
                                           html_text=text,
@@ -96,8 +100,10 @@ class ProgramScreen:
         pygame.draw.rect(display, WHITE, self.maze_rect)
         pygame.draw.rect(display, BLACK, self.maze_rect, width=1)
         if len(self.solutions) > 0:
-            pygame.draw.lines(display, (0, 255, 0), False, self.solutions[self.selected_solution-1][self.alg_one], 2)
-            pygame.draw.lines(display, (0, 0, 255), False, self.solutions[self.selected_solution-1][self.alg_two], 1)
+            alg_one_coords = self.solutions[self.selected_solution - 1][self.alg_one][0]
+            alg_two_coords = self.solutions[self.selected_solution - 1][self.alg_two][0]
+            pygame.draw.lines(display, (0, 255, 0), False, alg_one_coords, 1)
+            pygame.draw.lines(display, (0, 0, 255), False, alg_two_coords, 1)
 
     def rerender_maze(self):
         self.section_two.kill()
