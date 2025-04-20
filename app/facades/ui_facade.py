@@ -40,11 +40,7 @@ class UIFacade:
     def select_run(self, event: pygame.event.Event):
         if event.ui_object_id == 'panel.drop_down_menu.#drop_down_options_list':
             return
-        run = re.search(r'Run (\d+)', event.text)
-        if (run):
-            self.program_screen.selected_solution = int(run.group(1))
-        self.program_screen.rerender_maze()
-        self.program_screen.rerender_results()
+        self.program_screen.select_run(event)
 
     @staticmethod
     def quit():

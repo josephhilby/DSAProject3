@@ -1,5 +1,4 @@
-from email._header_value_parser import Section
-
+import re
 import pygame
 import pygame_gui
 
@@ -166,8 +165,14 @@ class ProgramScreen:
         elif event.ui_element == self.exit_button:
             self.clear()
             return "MENU"
-
         return "PROGRAM"
+
+    def select_run(self, event: pygame.event.Event):
+        run = re.search(r'Run (\d+)', event.text)
+        if run:
+            self.selected_solution = int(run.group(1))
+        self.rerender_maze()
+        self.rerender_results()
 
     def clear(self):
         self.header_section.kill()
