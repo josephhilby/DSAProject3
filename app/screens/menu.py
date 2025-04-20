@@ -13,6 +13,7 @@ class MenuScreen:
     """
     def __init__(self, manager: pygame_gui.UIManager):
         self.manager: pygame_gui.UIManager = manager
+        self.alg_names: [str] = AlgorithmFacade().names
         self.header_section: UILabel | None = None
         self.footer_section: UIPanel | None = None
         self.dropdown_section: UIPanel | None = None
@@ -20,7 +21,6 @@ class MenuScreen:
         self.alg_two_dropdown: UIDropDownMenu | None = None
         self.exit_button: UIButton | None = None
         self.start_button: UIButton | None = None
-        self.alg_names: [str] = AlgorithmFacade().names
 
     def render(self):
         if self.header_section is None:
