@@ -31,12 +31,12 @@ class ProgramScreen:
 
     def render(self, display: pygame.Surface):
         if self.header_section is None:
-            self.header_section = pygame_gui.elements.UILabel(relative_rect=pygame.Rect(SCREEN_WIDTH * 0.0,
-                                                                                        SCREEN_HEIGHT * 0.0,
-                                                                                        SCREEN_WIDTH * 1.0,
-                                                                                        SCREEN_HEIGHT * 0.05),
-                                                              text=PROGRAM_TXT,
-                                                              manager=self.manager)
+            self.header_section = pygame_gui.elements.UILabel(
+                manager=self.manager,
+                text=PROGRAM_TXT,
+                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.0,
+                                          SCREEN_WIDTH * 1.0, SCREEN_HEIGHT * 0.05)
+            )
 
         if self.alg_one is None:
             self.alg_one = self.alg_facade.names()[0]
@@ -45,65 +45,73 @@ class ProgramScreen:
             self.alg_two = self.alg_facade.names()[0]
 
         if self.run_button is None:
-            self.run_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect(SCREEN_WIDTH * 0.59,
-                                                                                     SCREEN_HEIGHT * 0.9,
-                                                                                     SCREEN_WIDTH * 0.08,
-                                                                                     SCREEN_HEIGHT * 0.08),
-                                                           text='Run',
-                                                           manager=self.manager)
+            self.run_button = pygame_gui.elements.UIButton(
+                manager=self.manager,
+                text='Run',
+                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.59, SCREEN_HEIGHT * 0.9,
+                                          SCREEN_WIDTH * 0.08, SCREEN_HEIGHT * 0.08)
+            )
 
         if self.reset_button is None:
-            self.reset_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect(SCREEN_WIDTH * 0.72,
-                                                                                       SCREEN_HEIGHT * 0.9,
-                                                                                       SCREEN_WIDTH * 0.08,
-                                                                                       SCREEN_HEIGHT * 0.08),
-                                                             text='Reset',
-                                                             manager=self.manager)
+            self.reset_button = pygame_gui.elements.UIButton(
+                manager=self.manager,
+                text='Reset',
+                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.72, SCREEN_HEIGHT * 0.9,
+                                          SCREEN_WIDTH * 0.08, SCREEN_HEIGHT * 0.08)
+            )
+
         if self.exit_button is None:
-            self.exit_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect(SCREEN_WIDTH * 0.85,
-                                                                                      SCREEN_HEIGHT * 0.9,
-                                                                                      SCREEN_WIDTH * 0.08,
-                                                                                      SCREEN_HEIGHT * 0.08),
-                                                            text='Exit',
-                                                            manager=self.manager)
+            self.exit_button = pygame_gui.elements.UIButton(
+                manager=self.manager,
+                text='Exit',
+                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.85, SCREEN_HEIGHT * 0.9,
+                                          SCREEN_WIDTH * 0.08, SCREEN_HEIGHT * 0.08)
+            )
+
         if self.section_one is None:
-            self.section_one = pygame_gui.elements.UIPanel(relative_rect=pygame.Rect(SCREEN_WIDTH * 0.02,
-                                                                                     SCREEN_HEIGHT * 0.05,
-                                                                                     SCREEN_WIDTH * 0.40,
-                                                                                     SCREEN_HEIGHT * 0.7),
-                                                           manager=self.manager)
+            self.section_one = pygame_gui.elements.UIPanel(
+                manager=self.manager,
+                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.02, SCREEN_HEIGHT * 0.05,
+                                          SCREEN_WIDTH * 0.40, SCREEN_HEIGHT * 0.7)
+            )
 
-            pygame_gui.elements.UILabel(relative_rect=pygame.Rect(0, 0, SCREEN_WIDTH * 0.40, 25),
-                                        text="Runs",
-                                        manager=self.manager,
-                                        container=self.section_one)
+            pygame_gui.elements.UILabel(
+                manager=self.manager,
+                container=self.section_one,
+                text="Runs",
+                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.0,
+                                          SCREEN_WIDTH * 0.40, 25)
+            )
 
-            pygame_gui.elements.UISelectionList(relative_rect=pygame.Rect(0,
-                                                                          25,
-                                                                          (SCREEN_WIDTH * 0.40) - 6,
-                                                                          (SCREEN_HEIGHT * 0.7) - 31),
-                                                item_list=[f"Run {i}" for i in range(1, len(self.solutions) + 1)],
-                                                manager=self.manager,
-                                                container=self.section_one)
+            pygame_gui.elements.UISelectionList(
+                manager=self.manager,
+                container=self.section_one,
+                item_list=[f"Run {i}" for i in range(1, len(self.solutions) + 1)],
+                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.0, 25,
+                                          (SCREEN_WIDTH * 0.40) - 6, (SCREEN_HEIGHT * 0.7) - 31)
+            )
 
         if self.section_two is None:
-            self.section_two = pygame_gui.elements.UIPanel(relative_rect=pygame.Rect(SCREEN_WIDTH * 0.435,
-                                                                                     SCREEN_HEIGHT * 0.05,
-                                                                                     SCREEN_WIDTH * 0.545,
-                                                                                     SCREEN_HEIGHT * 0.845),
-                                                           manager=self.manager)
+            self.section_two = pygame_gui.elements.UIPanel(
+                manager=self.manager,
+                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.435, SCREEN_HEIGHT * 0.05,
+                                          SCREEN_WIDTH * 0.545, SCREEN_HEIGHT * 0.845)
+            )
 
-            pygame_gui.elements.UILabel(relative_rect=pygame.Rect(0, 0, SCREEN_WIDTH * 0.545, 25),
-                                        text=f"Maze for Run {self.selected_solution}",
-                                        manager=self.manager,
-                                        container=self.section_two)
+            pygame_gui.elements.UILabel(
+                manager=self.manager,
+                container=self.section_two,
+                text=f"Maze for Run {self.selected_solution}",
+                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.0,
+                                          SCREEN_WIDTH * 0.545, 25)
+            )
 
         if self.section_three is None and len(self.solutions) > 0:
-            self.section_three = pygame_gui.elements.UIPanel(relative_rect=pygame.Rect(SCREEN_WIDTH * 0.02,
-                                                                                       SCREEN_HEIGHT * 0.75,
-                                                                                       SCREEN_WIDTH * 0.40,
-                                                                                       SCREEN_HEIGHT * 0.23),
-                                                             manager=self.manager)
+            self.section_three = pygame_gui.elements.UIPanel(
+                manager=self.manager,
+                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.02, SCREEN_HEIGHT * 0.75,
+                                          SCREEN_WIDTH * 0.40, SCREEN_HEIGHT * 0.23)
+            )
 
             alg_one_steps = len(self.solutions[self.selected_solution-1][self.alg_one])
             alg_two_steps = len(self.solutions[self.selected_solution-1][self.alg_two])
@@ -114,13 +122,13 @@ class ProgramScreen:
             <p> {self.alg_one} is {alg_one_steps/alg_two_steps:.2f} times the speed of {self.alg_two}</p>
             """
 
-            pygame_gui.elements.UITextBox(relative_rect=pygame.Rect(0,
-                                                                    0,
-                                                                    (SCREEN_WIDTH * 0.40) - 6,
-                                                                    (SCREEN_HEIGHT * 0.23) - 6),
-                                          html_text=text,
-                                          manager=self.manager,
-                                          container=self.section_three)
+            pygame_gui.elements.UITextBox(
+                manager=self.manager,
+                container=self.section_three,
+                html_text=text,
+                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.0,
+                                          (SCREEN_WIDTH * 0.40) - 6, (SCREEN_HEIGHT * 0.23) - 6)
+            )
 
         if self.maze_rect is None:
             self.maze_rect = pygame.Rect((SCREEN_WIDTH * 0.435 + 7, SCREEN_HEIGHT * 0.05 + 30),
