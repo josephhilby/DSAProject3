@@ -19,7 +19,9 @@ class ProgramScreen:
         self.solutions: list[{str: (int, int)}] = []
         self.selected_solution: int = 1
         self.alg_one: str | None = None
+        self.alg_one_sum: int = 0
         self.alg_two: str | None = None
+        self.alg_two_sum: int = 0
         self.maze_rect: pygame.Rect | None = None
         self.header_section: UILabel | None = None
         self.section_one: UIPanel | None = None
@@ -72,7 +74,7 @@ class ProgramScreen:
             self.section_one = pygame_gui.elements.UIPanel(
                 manager=self.manager,
                 relative_rect=pygame.Rect(SCREEN_WIDTH * 0.02, SCREEN_HEIGHT * 0.05,
-                                          SCREEN_WIDTH * 0.40, SCREEN_HEIGHT * 0.7)
+                                          SCREEN_WIDTH * 0.40, SCREEN_HEIGHT * 0.5)
             )
 
             pygame_gui.elements.UILabel(
@@ -88,7 +90,7 @@ class ProgramScreen:
                 container=self.section_one,
                 item_list=[f"Run {i}" for i in range(1, len(self.solutions) + 1)],
                 relative_rect=pygame.Rect(SCREEN_WIDTH * 0.0, 25,
-                                          (SCREEN_WIDTH * 0.40) - 6, (SCREEN_HEIGHT * 0.7) - 31)
+                                          (SCREEN_WIDTH * 0.40) - 6, (SCREEN_HEIGHT * 0.5) - 31)
             )
 
         if self.section_two is None:
@@ -109,17 +111,23 @@ class ProgramScreen:
         if self.section_three is None and len(self.solutions) > 0:
             self.section_three = pygame_gui.elements.UIPanel(
                 manager=self.manager,
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.02, SCREEN_HEIGHT * 0.75,
-                                          SCREEN_WIDTH * 0.40, SCREEN_HEIGHT * 0.23)
+                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.02, SCREEN_HEIGHT * 0.55,
+                                          SCREEN_WIDTH * 0.40, SCREEN_HEIGHT * 0.43)
             )
 
             alg_one_steps = len(self.solutions[self.selected_solution-1][self.alg_one])
             alg_two_steps = len(self.solutions[self.selected_solution-1][self.alg_two])
+            alg_one_avg = self.alg_one_sum/len(self.solutions)
+            alg_two_avg = self.alg_two_sum/len(self.solutions)
             text = f"""
-            <b> Run {self.selected_solution}
-            <b> {self.alg_one}: Steps {alg_one_steps} </b>
-            <b> {self.alg_two}: Steps {alg_two_steps} </b>
-            <p> {self.alg_one} is {alg_one_steps/alg_two_steps:.2f} times the speed of {self.alg_two}</p>
+            <b>Run {self.selected_solution}</b>
+            <p>{self.alg_one}: Steps {alg_one_steps}
+            {self.alg_two}: Steps {alg_two_steps}
+            {self.alg_one} is {alg_one_steps/alg_two_steps:.2f} times the speed of {self.alg_two}</p>
+            <b>Expected Values</b>
+            <p>{self.alg_one}: {alg_one_avg: .2f}
+            {self.alg_two}: {alg_two_avg: .2f}
+            {self.alg_one} averages {alg_one_avg/alg_two_avg:.2f} times the speed of {self.alg_two}</p>
             """
 
             pygame_gui.elements.UITextBox(
@@ -127,7 +135,7 @@ class ProgramScreen:
                 container=self.section_three,
                 html_text=text,
                 relative_rect=pygame.Rect(SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.0,
-                                          (SCREEN_WIDTH * 0.40) - 6, (SCREEN_HEIGHT * 0.23) - 6)
+                                          (SCREEN_WIDTH * 0.40) - 6, (SCREEN_HEIGHT * 0.43) - 6)
             )
 
         if self.maze_rect is None:
@@ -162,12 +170,17 @@ class ProgramScreen:
             solution = {self.alg_one: self.alg_facade.plot(nodes, self.alg_one, 640, top, left),
                         self.alg_two: self.alg_facade.plot(nodes, self.alg_two, 640, top, left)}
             self.solutions.append(solution)
+            self.alg_one_sum += len(self.solutions[-1][self.alg_one])
+            self.alg_two_sum += len(self.solutions[-1][self.alg_two])
             self.section_one.kill()
             self.section_one = None
         elif event.ui_element == self.reset_button:
             self.solutions = []
+            self.alg_one_sum = 0
+            self.alg_two_sum = 0
             self.section_one.kill()
             self.section_one = None
+            self.selected_solution = 1
             self.rerender_maze()
             self.rerender_results()
         elif event.ui_element == self.exit_button:
@@ -203,3 +216,4 @@ class ProgramScreen:
         self.alg_two = None
         self.maze_rect = None
         self.solutions = []
+        self.selected_solution = 1
