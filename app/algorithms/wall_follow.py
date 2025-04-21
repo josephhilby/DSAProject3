@@ -55,4 +55,4 @@ class WallFollow:
                         break
             if not moved:
                 break
-        return path
+        return path,len(path)
