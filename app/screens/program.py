@@ -144,8 +144,8 @@ class ProgramScreen:
 
             text = f"""
             <b>Run {self.selected_solution}</b>
-            <p>{self.alg_one}: Steps {alg_one_steps}
-            {self.alg_two}: Steps {alg_two_steps}
+            <p>{self.alg_one}: {alg_one_steps} steps to find a solution
+            {self.alg_two}: {alg_two_steps} steps to find a solution
             {self.alg_one} was {alg_one_steps/alg_two_steps:.2f} times the speed of {self.alg_two}</p>
             <b>Expected Values</b>
             <p>{self.alg_one}: {alg_one_avg: .2f}
