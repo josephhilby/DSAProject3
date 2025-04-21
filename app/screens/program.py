@@ -144,6 +144,7 @@ class ProgramScreen:
 
         pygame.draw.rect(display, WHITE, self.maze_rect)
         pygame.draw.rect(display, BLACK, self.maze_rect, width=1)
+
         if len(self.solutions) > 0:
             alg_one_solution = self.solutions[self.selected_solution-1][self.alg_one]
             alg_two_solution = self.solutions[self.selected_solution-1][self.alg_two]
@@ -160,7 +161,7 @@ class ProgramScreen:
             self.section_three.kill()
             self.section_three = None
 
-    def handle(self, event: pygame.event.Event):
+    def handle(self, event: pygame.event.Event) -> str:
         if event.ui_element == self.run_button:
             graph = Graph()
             graph.generate_maze()
@@ -174,6 +175,7 @@ class ProgramScreen:
             self.alg_two_sum += len(self.solutions[-1][self.alg_two])
             self.section_one.kill()
             self.section_one = None
+
         elif event.ui_element == self.reset_button:
             self.solutions = []
             self.alg_one_sum = 0
@@ -183,15 +185,19 @@ class ProgramScreen:
             self.selected_solution = 1
             self.rerender_maze()
             self.rerender_results()
+
         elif event.ui_element == self.exit_button:
             self.clear()
             return "MENU"
+
         return "PROGRAM"
 
     def select_run(self, event: pygame.event.Event):
         run = re.search(r'Run (\d+)', event.text)
+
         if run:
             self.selected_solution = int(run.group(1))
+
         self.rerender_maze()
         self.rerender_results()
 
@@ -201,10 +207,13 @@ class ProgramScreen:
         self.reset_button.kill()
         self.exit_button.kill()
         self.section_one.kill()
+
         if self.section_two is not None:
             self.section_two.kill()
+
         if self.section_three is not None:
             self.section_three.kill()
+
         self.header_section = None
         self.run_button = None
         self.reset_button = None

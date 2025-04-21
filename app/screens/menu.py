@@ -72,13 +72,15 @@ class MenuScreen:
                                           SCREEN_WIDTH * 0.08, SCREEN_HEIGHT * 0.08)
             )
 
-    def handle(self, event: pygame.event.Event):
+    def handle(self, event: pygame.event.Event) -> str:
         if event.ui_element == self.start_button:
             self.clear()
             return "PROGRAM"
+
         elif event.ui_element == self.exit_button:
             pygame.quit()
             sys.exit()
+
         return "MENU"
 
     def clear(self):
