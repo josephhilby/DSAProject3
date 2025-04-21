@@ -36,8 +36,10 @@ class ProgramScreen:
             self.header_section = pygame_gui.elements.UILabel(
                 manager=self.manager,
                 text=PROGRAM_TXT,
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.0,
-                                          SCREEN_WIDTH * 1.0, SCREEN_HEIGHT * 0.05)
+                relative_rect=pygame.Rect(
+                    SCREEN_WIDTH * 0.00, SCREEN_HEIGHT * 0.00,
+                    SCREEN_WIDTH * 1.00, SCREEN_HEIGHT * 0.05
+                )
             )
 
         if self.alg_one is None:
@@ -50,69 +52,87 @@ class ProgramScreen:
             self.run_button = pygame_gui.elements.UIButton(
                 manager=self.manager,
                 text='Run',
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.59, SCREEN_HEIGHT * 0.9,
-                                          SCREEN_WIDTH * 0.08, SCREEN_HEIGHT * 0.08)
+                relative_rect=pygame.Rect(
+                    SCREEN_WIDTH * 0.59, SCREEN_HEIGHT * 0.90,
+                    SCREEN_WIDTH * 0.08, SCREEN_HEIGHT * 0.08
+                )
             )
 
         if self.reset_button is None:
             self.reset_button = pygame_gui.elements.UIButton(
                 manager=self.manager,
                 text='Reset',
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.72, SCREEN_HEIGHT * 0.9,
-                                          SCREEN_WIDTH * 0.08, SCREEN_HEIGHT * 0.08)
+                relative_rect=pygame.Rect(
+                    SCREEN_WIDTH * 0.72, SCREEN_HEIGHT * 0.90,
+                    SCREEN_WIDTH * 0.08, SCREEN_HEIGHT * 0.08
+                )
             )
 
         if self.exit_button is None:
             self.exit_button = pygame_gui.elements.UIButton(
                 manager=self.manager,
                 text='Exit',
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.85, SCREEN_HEIGHT * 0.9,
-                                          SCREEN_WIDTH * 0.08, SCREEN_HEIGHT * 0.08)
+                relative_rect=pygame.Rect(
+                    SCREEN_WIDTH * 0.85, SCREEN_HEIGHT * 0.90,
+                    SCREEN_WIDTH * 0.08, SCREEN_HEIGHT * 0.08
+                )
             )
 
         if self.section_one is None:
             self.section_one = pygame_gui.elements.UIPanel(
                 manager=self.manager,
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.02, SCREEN_HEIGHT * 0.05,
-                                          SCREEN_WIDTH * 0.40, SCREEN_HEIGHT * 0.5)
+                relative_rect=pygame.Rect(
+                    SCREEN_WIDTH * 0.02, SCREEN_HEIGHT * 0.05,
+                    SCREEN_WIDTH * 0.40, SCREEN_HEIGHT * 0.50
+                )
             )
 
             pygame_gui.elements.UILabel(
                 manager=self.manager,
                 container=self.section_one,
                 text="Runs",
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.0,
-                                          SCREEN_WIDTH * 0.40, 25)
+                relative_rect=pygame.Rect(
+                    SCREEN_WIDTH * 0.00, SCREEN_HEIGHT * 0.00,
+                    SCREEN_WIDTH * 0.40, 25
+                )
             )
 
             pygame_gui.elements.UISelectionList(
                 manager=self.manager,
                 container=self.section_one,
                 item_list=[f"Run {i}" for i in range(1, len(self.solutions) + 1)],
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.0, 25,
-                                          (SCREEN_WIDTH * 0.40) - 6, (SCREEN_HEIGHT * 0.5) - 31)
+                relative_rect=pygame.Rect(
+                    SCREEN_WIDTH * 0.00, 25,
+                    SCREEN_WIDTH * 0.40 - 6, SCREEN_HEIGHT * 0.50 - 31
+                )
             )
 
         if self.section_two is None:
             self.section_two = pygame_gui.elements.UIPanel(
                 manager=self.manager,
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.435, SCREEN_HEIGHT * 0.05,
-                                          SCREEN_WIDTH * 0.545, SCREEN_HEIGHT * 0.845)
+                relative_rect=pygame.Rect(
+                    SCREEN_WIDTH * 0.435, SCREEN_HEIGHT * 0.050,
+                    SCREEN_WIDTH * 0.545, SCREEN_HEIGHT * 0.845
+                )
             )
 
             pygame_gui.elements.UILabel(
                 manager=self.manager,
                 container=self.section_two,
                 text=f"Maze for Run {self.selected_solution}",
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.0,
-                                          SCREEN_WIDTH * 0.545, 25)
+                relative_rect=pygame.Rect(
+                    SCREEN_WIDTH * 0.000, SCREEN_HEIGHT * 0.0,
+                    SCREEN_WIDTH * 0.545, 25
+                )
             )
 
         if self.section_three is None and len(self.solutions) > 0:
             self.section_three = pygame_gui.elements.UIPanel(
                 manager=self.manager,
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.02, SCREEN_HEIGHT * 0.55,
-                                          SCREEN_WIDTH * 0.40, SCREEN_HEIGHT * 0.43)
+                relative_rect=pygame.Rect(
+                    SCREEN_WIDTH * 0.02, SCREEN_HEIGHT * 0.55,
+                    SCREEN_WIDTH * 0.40, SCREEN_HEIGHT * 0.43
+                )
             )
 
             alg_one_data = self.solutions[self.selected_solution-1][self.alg_one]
@@ -121,11 +141,12 @@ class ProgramScreen:
             alg_two_path, alg_two_steps = alg_two_data
             alg_one_avg = self.alg_one_sum/len(self.solutions)
             alg_two_avg = self.alg_two_sum/len(self.solutions)
+
             text = f"""
             <b>Run {self.selected_solution}</b>
             <p>{self.alg_one}: Steps {alg_one_steps}
             {self.alg_two}: Steps {alg_two_steps}
-            {self.alg_one} is {alg_one_steps/alg_two_steps:.2f} times the speed of {self.alg_two}</p>
+            {self.alg_one} was {alg_one_steps/alg_two_steps:.2f} times the speed of {self.alg_two}</p>
             <b>Expected Values</b>
             <p>{self.alg_one}: {alg_one_avg: .2f}
             {self.alg_two}: {alg_two_avg: .2f}
@@ -136,16 +157,21 @@ class ProgramScreen:
                 manager=self.manager,
                 container=self.section_three,
                 html_text=text,
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.0,
-                                          (SCREEN_WIDTH * 0.40) - 6, (SCREEN_HEIGHT * 0.43) - 6)
+                relative_rect=pygame.Rect(
+                    SCREEN_WIDTH * 0.00, SCREEN_HEIGHT * 0.00,
+                    SCREEN_WIDTH * 0.40 - 6, SCREEN_HEIGHT * 0.43 - 6
+                )
             )
 
         if self.maze_rect is None:
-            self.maze_rect = pygame.Rect((SCREEN_WIDTH * 0.435 + 7, SCREEN_HEIGHT * 0.05 + 30),
-                                         (641, 641))
+            self.maze_rect = pygame.Rect(
+                SCREEN_WIDTH * 0.435 + 6, SCREEN_HEIGHT * 0.05 + 30,
+                641, 641
+            )
 
         pygame.draw.rect(display, WHITE, self.maze_rect)
         pygame.draw.rect(display, BLACK, self.maze_rect, width=1)
+
         if len(self.solutions) > 0:
             alg_one_path = self.solutions[self.selected_solution-1][self.alg_one][0]
             alg_two_path = self.solutions[self.selected_solution-1][self.alg_two][0]
@@ -162,7 +188,7 @@ class ProgramScreen:
             self.section_three.kill()
             self.section_three = None
 
-    def handle(self, event: pygame.event.Event):
+    def handle(self, event: pygame.event.Event) -> str:
         if event.ui_element == self.run_button:
             graph = Graph()
             graph.generate_maze()
@@ -181,6 +207,7 @@ class ProgramScreen:
             if self.section_three is not None:
                 self.section_three.kill()
                 self.section_three = None
+
         elif event.ui_element == self.reset_button:
             self.solutions = []
             self.alg_one_sum = 0
@@ -190,15 +217,19 @@ class ProgramScreen:
             self.selected_solution = 1
             self.rerender_maze()
             self.rerender_results()
+
         elif event.ui_element == self.exit_button:
             self.clear()
             return "MENU"
+
         return "PROGRAM"
 
     def select_run(self, event: pygame.event.Event):
         run = re.search(r'Run (\d+)', event.text)
+
         if run:
             self.selected_solution = int(run.group(1))
+
         self.rerender_maze()
         self.rerender_results()
 
@@ -208,10 +239,13 @@ class ProgramScreen:
         self.reset_button.kill()
         self.exit_button.kill()
         self.section_one.kill()
+
         if self.section_two is not None:
             self.section_two.kill()
+
         if self.section_three is not None:
             self.section_three.kill()
+
         self.header_section = None
         self.run_button = None
         self.reset_button = None

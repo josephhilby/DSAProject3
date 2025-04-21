@@ -58,8 +58,7 @@ Once you have completed the steps in installation, run the file `src/main.py` an
 This project was built with Python 13.12 and PyGame. Other libraries include:
 
 - PyTest
-- Factory-Boy
-- Faker
+- PyGame_GUI
 
 <br />
 <div align="center">

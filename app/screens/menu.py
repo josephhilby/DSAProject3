@@ -27,15 +27,19 @@ class MenuScreen:
             self.header_section = pygame_gui.elements.UILabel(
                 manager=self.manager,
                 text=MENU_TXT,
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.0,
-                                          SCREEN_WIDTH * 1.0, SCREEN_HEIGHT * 0.05)
+                relative_rect=pygame.Rect(
+                    SCREEN_WIDTH * 0.00, SCREEN_HEIGHT * 0.00,
+                    SCREEN_WIDTH * 1.00, SCREEN_HEIGHT * 0.05
+                )
             )
 
         if self.dropdown_section is None:
             self.dropdown_section = pygame_gui.elements.UIPanel(
                 manager=self.manager,
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.0, SCREEN_HEIGHT * 0.05,
-                                          SCREEN_WIDTH * 1.0, SCREEN_HEIGHT * 0.83)
+                relative_rect=pygame.Rect(
+                    SCREEN_WIDTH * 0.00, SCREEN_HEIGHT * 0.05,
+                    SCREEN_WIDTH * 1.00, SCREEN_HEIGHT * 0.83
+                )
             )
 
             self.alg_one_dropdown = pygame_gui.elements.UIDropDownMenu(
@@ -43,8 +47,10 @@ class MenuScreen:
                 container=self.dropdown_section,
                 options_list=self.alg_names(),
                 starting_option=self.alg_names()[1],
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.35, SCREEN_HEIGHT * 0.42,
-                                          110, 25)
+                relative_rect=pygame.Rect(
+                    SCREEN_WIDTH * 0.35, SCREEN_HEIGHT * 0.42,
+                    110, 25
+                )
             )
 
             self.alg_two_dropdown = pygame_gui.elements.UIDropDownMenu(
@@ -52,33 +58,41 @@ class MenuScreen:
                 container=self.dropdown_section,
                 options_list=self.alg_names(),
                 starting_option=self.alg_names()[0],
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.55, SCREEN_HEIGHT * 0.42,
-                                          110, 25)
+                relative_rect=pygame.Rect(
+                    SCREEN_WIDTH * 0.55, SCREEN_HEIGHT * 0.42,
+                    110, 25
+                )
             )
 
         if self.start_button is None:
             self.start_button = pygame_gui.elements.UIButton(
                 manager=self.manager,
                 text='Start',
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.72, SCREEN_HEIGHT * 0.9,
-                                          SCREEN_WIDTH * 0.08, SCREEN_HEIGHT * 0.08)
+                relative_rect=pygame.Rect(
+                    SCREEN_WIDTH * 0.72, SCREEN_HEIGHT * 0.90,
+                    SCREEN_WIDTH * 0.08, SCREEN_HEIGHT * 0.08
+                )
             )
 
         if self.exit_button is None:
             self.exit_button = pygame_gui.elements.UIButton(
                 manager=self.manager,
                 text='Quit',
-                relative_rect=pygame.Rect(SCREEN_WIDTH * 0.85, SCREEN_HEIGHT * 0.9,
-                                          SCREEN_WIDTH * 0.08, SCREEN_HEIGHT * 0.08)
+                relative_rect=pygame.Rect(
+                    SCREEN_WIDTH * 0.85, SCREEN_HEIGHT * 0.90,
+                    SCREEN_WIDTH * 0.08, SCREEN_HEIGHT * 0.08
+                )
             )
 
-    def handle(self, event: pygame.event.Event):
+    def handle(self, event: pygame.event.Event) -> str:
         if event.ui_element == self.start_button:
             self.clear()
             return "PROGRAM"
+
         elif event.ui_element == self.exit_button:
             pygame.quit()
             sys.exit()
+
         return "MENU"
 
     def clear(self):
