@@ -135,8 +135,10 @@ class ProgramScreen:
                 )
             )
 
-            alg_one_steps = len(self.solutions[self.selected_solution-1][self.alg_one])
-            alg_two_steps = len(self.solutions[self.selected_solution-1][self.alg_two])
+            alg_one_data = self.solutions[self.selected_solution-1][self.alg_one]
+            alg_two_data = self.solutions[self.selected_solution-1][self.alg_two]
+            alg_one_path, alg_one_steps = alg_one_data
+            alg_two_path, alg_two_steps = alg_two_data
             alg_one_avg = self.alg_one_sum/len(self.solutions)
             alg_two_avg = self.alg_two_sum/len(self.solutions)
 
@@ -171,10 +173,10 @@ class ProgramScreen:
         pygame.draw.rect(display, BLACK, self.maze_rect, width=1)
 
         if len(self.solutions) > 0:
-            alg_one_solution = self.solutions[self.selected_solution-1][self.alg_one]
-            alg_two_solution = self.solutions[self.selected_solution-1][self.alg_two]
-            pygame.draw.lines(display, (255, 0, 0), False, alg_one_solution, 1)
-            pygame.draw.lines(display, (0, 0, 255), False, alg_two_solution, 1)
+            alg_one_path = self.solutions[self.selected_solution-1][self.alg_one][0]
+            alg_two_path = self.solutions[self.selected_solution-1][self.alg_two][0]
+            pygame.draw.lines(display, (255, 0, 0), False, alg_one_path, 1)
+            pygame.draw.lines(display, (0, 0, 255), False, alg_two_path, 1)
 
     def rerender_maze(self):
         if self.section_two is not None:
@@ -196,11 +198,15 @@ class ProgramScreen:
             solution = {self.alg_one: self.alg_facade.plot(nodes, self.alg_one, 640, top, left),
                         self.alg_two: self.alg_facade.plot(nodes, self.alg_two, 640, top, left)}
             self.solutions.append(solution)
-            self.alg_one_sum += len(self.solutions[-1][self.alg_one])
-            self.alg_two_sum += len(self.solutions[-1][self.alg_two])
+            _, algo_one_steps = self.solutions[-1][self.alg_one]
+            _, algo_two_steps = self.solutions[-1][self.alg_two]
+            self.alg_one_sum += algo_one_steps
+            self.alg_two_sum += algo_two_steps
             self.section_one.kill()
             self.section_one = None
-            self.rerender_results()
+            if self.section_three is not None:
+                self.section_three.kill()
+                self.section_three = None
 
         elif event.ui_element == self.reset_button:
             self.solutions = []

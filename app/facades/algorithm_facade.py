@@ -24,14 +24,14 @@ class AlgorithmFacade:
 
     def plot(self, nodes: list[Node], algorithm: str, line_size: int, top: int, left: int) -> list[(int, int)]:
         solution = self.solve(nodes, algorithm)
+        coords, visited_num = solution
         cell_size = line_size // 320
         path = []
 
-        for node_id in solution:
+        for node_id in coords:
             row = node_id // 320
             col = node_id % 320
             x = left + col * cell_size + cell_size // 2
             y = top + row * cell_size + cell_size // 2
             path.append((x, y))
-
-        return path
+        return path, visited_num

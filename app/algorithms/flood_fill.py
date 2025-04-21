@@ -47,4 +47,5 @@ class FloodFill:
             current = prev.get(current)
         #reverse the path to get it in the correct order since we went from end to start
         path.reverse()
-        return path
+        visited_num = len(visited)
+        return path, visited_num
