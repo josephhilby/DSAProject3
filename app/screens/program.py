@@ -139,6 +139,7 @@ class ProgramScreen:
             alg_two_steps = len(self.solutions[self.selected_solution-1][self.alg_two])
             alg_one_avg = self.alg_one_sum/len(self.solutions)
             alg_two_avg = self.alg_two_sum/len(self.solutions)
+
             text = f"""
             <b>Run {self.selected_solution}</b>
             <p>{self.alg_one}: Steps {alg_one_steps}
