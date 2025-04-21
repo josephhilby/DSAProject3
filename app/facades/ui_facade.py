@@ -1,5 +1,4 @@
 import sys
-import re
 import pygame
 import pygame_gui
 
@@ -11,6 +10,7 @@ from app.screens.program import ProgramScreen
 class UIFacade:
     """
     Class to manage state of the app for the main function
+    and route all events
     """
     def __init__(self, display: pygame.display, manager: UIManager):
         self.state: str = "MENU"
