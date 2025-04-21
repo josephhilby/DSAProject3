@@ -1,5 +1,4 @@
 import sys
-import re
 import pygame
 import pygame_gui
 
@@ -9,6 +8,10 @@ from app.screens.program import ProgramScreen
 
 
 class UIFacade:
+    """
+    Class to manage state of the app for the main function
+    and route all events
+    """
     def __init__(self, display: pygame.display, manager: UIManager):
         self.state: str = "MENU"
         self.display: pygame.display = display
@@ -37,11 +40,7 @@ class UIFacade:
     def select_run(self, event: pygame.event.Event):
         if event.ui_object_id == 'panel.drop_down_menu.#drop_down_options_list':
             return
-        run = re.search(r'Run (\d+)', event.text)
-        if (run):
-            self.program_screen.selected_solution = int(run.group(1))
-        self.program_screen.rerender_maze()
-        self.program_screen.rerender_results()
+        self.program_screen.select_run(event)
 
     @staticmethod
     def quit():

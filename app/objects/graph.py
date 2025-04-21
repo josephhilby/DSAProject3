@@ -8,7 +8,6 @@ class Graph:
         self.end: int = (320 * 320) - 1
         self.nodes: list[Node] = []
 
-
     def generate_maze(self):
         # initialize nodes with walls. may need an extra 2 here
         # odd from 1 to end. inclusive

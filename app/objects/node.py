@@ -2,9 +2,9 @@ class Node:
     """
     Class representing a cell, to be put in a graph
 
-    Doubly Linked List Node, ID will dictate placement in maze
-        row = (self.id - 1) // 320
-        col = (self.id - 1) % 320
+    Doubly Linked List Node, ID will dictate placement in maze by UI
+        row = id // 320
+        col = id % 320
 
     Walls (edges) are held as a dict of bools
     If visited in a given solution mark visited to True
