@@ -200,6 +200,7 @@ class ProgramScreen:
             self.alg_two_sum += len(self.solutions[-1][self.alg_two])
             self.section_one.kill()
             self.section_one = None
+            self.rerender_results()
 
         elif event.ui_element == self.reset_button:
             self.solutions = []
