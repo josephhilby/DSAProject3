@@ -1,5 +1,3 @@
-import pygame_gui
-
 from app.facades.ui_facade import *
 from lib.constants import *
 

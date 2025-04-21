@@ -11,25 +11,27 @@ class AlgorithmFacade:
         self.flood_fill: FloodFill = FloodFill()
         self.wall_follow: WallFollow = WallFollow()
 
-    def names(self):
+    def names(self) -> list[str]:
         return [self.flood_fill.name, self.wall_follow.name]
 
-    def solve(self, nodes: list[Node], algorithm: str):
+    def solve(self, nodes: list[Node], algorithm: str) -> list[Node]:
         match algorithm:
             case self.flood_fill.name:
                 return self.flood_fill.solve(nodes)
+
             case self.wall_follow.name:
                 return self.wall_follow.solve(nodes)
 
-    def plot(self, nodes: list[Node], algorithm: str, line_size: int, top: int, left: int):
+    def plot(self, nodes: list[Node], algorithm: str, line_size: int, top: int, left: int) -> list[(int, int)]:
         solution = self.solve(nodes, algorithm)
         cell_size = line_size // 320
         path = []
+
         for node_id in solution:
             row = node_id // 320
             col = node_id % 320
             x = left + col * cell_size + cell_size // 2
             y = top + row * cell_size + cell_size // 2
             path.append((x, y))
-        return path
 
+        return path
