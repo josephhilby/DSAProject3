@@ -42,7 +42,7 @@ class MenuScreen:
                 manager=self.manager,
                 container=self.dropdown_section,
                 options_list=self.alg_names(),
-                starting_option=self.alg_names()[0],
+                starting_option=self.alg_names()[1],
                 relative_rect=pygame.Rect(SCREEN_WIDTH * 0.35, SCREEN_HEIGHT * 0.42,
                                           110, 25)
             )

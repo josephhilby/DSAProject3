@@ -39,7 +39,7 @@ class ProgramScreen:
             )
 
         if self.alg_one is None:
-            self.alg_one = self.alg_facade.names()[0]
+            self.alg_one = self.alg_facade.names()[1]
 
         if self.alg_two is None:
             self.alg_two = self.alg_facade.names()[0]
